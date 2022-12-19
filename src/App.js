@@ -129,6 +129,34 @@ function App() {
     setIsAudioPlaying(true);
   }
 
+  const handleAudioUpdate = ()=>{
+    //Input total length of the audio
+    let minutes = Math.floor(currentAudio.current.duration / 60);
+    let seconds = Math.floor(currentAudio.current.duration % 60);
+    let musicTotalLength0 = `${minutes <10 ? `0${minutes}` : minutes} : ${seconds <10 ? `0${seconds}` : seconds}`;
+    setMusicTotalLength(musicTotalLength0);
+
+    //Input Music Current Time
+    let currentMin = Math.floor(currentAudio.current.currentTime / 60);
+    let currentSec = Math.floor(currentAudio.current.currentTime % 60);
+    let musicCurrentT = `${currentMin <10 ? `0${currentMin}` : currentMin} : ${currentSec <10 ? `0${currentSec}` : currentSec}`;
+    setMusicCurrentTime(musicCurrentT);
+
+    const progress = parseInt((currentAudio.current.currentTime / currentAudio.current.duration) * 100);
+    setAudioProgress(isNaN(progress)? 0 : progress)
+  }
+
+
+  const vidArray = ['./Assets/Videos/video1.mp4','./Assets/Videos/video2.mp4','./Assets/Videos/video3.mp4','./Assets/Videos/video4.mp4','./Assets/Videos/video5.mp4','./Assets/Videos/video6.mp4'];
+
+  const handleChangeBackground = ()=>{
+    if (videoIndex >= vidArray.length - 1) {
+      setVideoIndex(0);
+    }else{
+      setVideoIndex(videoIndex + 1)
+    }
+  }
+
 
 }
 
