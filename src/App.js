@@ -157,6 +157,38 @@ function App() {
     }
   }
 
+  return (
+    <>
+    <div className="container">
+      <audio src='./Assets/songs/Chasing - NEFFEX.mp3' ref={currentAudio} onEnded={handleNextSong} onTimeUpdate={handleAudioUpdate}></audio>
+      <video src={vidArray[videoIndex]} loop muted autoPlay className='backgroundVideo'></video>
+      <div className="blackScreen"></div>
+      <div className="music-Container">
+        <p className='musicPlayer'>Music Player</p>
+        <p className='music-Head-Name'>{currentMusicDetails.songName}</p>
+        <p className='music-Artist-Name'>{currentMusicDetails.songArtist}</p>
+        <img src={currentMusicDetails.songAvatar} className={avatarClass[avatarClassIndex]} onClick={handleAvatar} alt="song Avatar" id='songAvatar'/>
+        <div className="musicTimerDiv">
+          <p className='musicCurrentTime'>{musicCurrentTime}</p>
+          <p className='musicTotalLenght'>{musicTotalLength}</p>
+        </div>
+        <input type="range" name="musicProgressBar" className='musicProgressBar' value={audioProgress} onChange={handleMusicProgressBar} />
+        <div className="musicControlers">
+          <i className='fa-solid fa-backward musicControler' onClick={handlePrevSong}></i>
+          <i className={`fa-solid ${isAudioPlaying? 'fa-pause-circle' : 'fa-circle-play'} playBtn`} onClick={handleAudioPlay}></i>
+          <i className='fa-solid fa-forward musicControler' onClick={handleNextSong}></i>
+        </div>
+      </div>
+      <div className="changeBackBtn" onClick={handleChangeBackground}>
+        Change Background
+      </div>
+      <a href="https://www.youtube.com/@teenage-programmer" title='Subscribe' className='youtube-Subs'>
+        <img src="./Assets/Images/Youtube_logo.png" alt="Youtube Logo"/>
+        <p>Teenage Programmer</p>
+      </a>
+    </div>
+    </>
+  );
 
 }
 
